@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quora</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/index.css" />
+</head>
+<body>
+    <h1>Quora</h1>
+
+    <% if (posts.length == 0) { %>
+        <p>No posts found.</p>
+    <% } %>
+
+    <% for (let post of posts) { %>
+        <div class="post">
+            <h3>@<%= post.username %></h3>
+            <p><%= post.content %></p>
+            <a href=<%= `/posts/${post.id}/edit` %>><button class="modify">Edit</button></a>
+            <form action=<%= `/posts/${post.id}?_method=DELETE` %> method="post">
+                <button class="modify">Delete</button>
+            </form>
+        </div>
+        <hr>
+    <% } %>
+
+    <a href="/posts/new"><button class="newpost">New Post</button></a>
+
+    <script src="/idx.js"></script>
+</body>
+</html>

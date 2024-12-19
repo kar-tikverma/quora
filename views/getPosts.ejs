@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@<%= username %></title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/index.css" />
+</head>
+<body>
+    <h1>Quora</h1>
+
+    <% let postsExist = false; %>
+    <% for (let post of posts) { %>
+        <% if (post.username == username) { %>
+            <% postsExist = true; %>
+            <div class="post">
+                <h3>@<%= post.username %></h3>
+                <p><%= post.content %></p>
+            </div>
+            <hr>
+        <% } %>
+    <% } %>
+
+    <% if (!postsExist) { %>
+        <p>No posts found.</p>
+    <% } %>
+
+    <script src="/idx.js"></script>
+</body>
+</html>
