@@ -5,9 +5,9 @@ const { v4: uuidv4 } = require("uuid");
 const methodoverride = require("method-override");
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", process.env.VIEWS_DIR || path.join(__dirname, "views"));
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(process.env.STATIC_DIR || path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodoverride("_method"));
