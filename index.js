@@ -5,9 +5,15 @@ const { v4: uuidv4 } = require("uuid");
 const methodoverride = require("method-override");
 
 app.set("view engine", "ejs");
-app.set("views", process.env.VIEWS_DIR || path.join(__dirname, "views"));
+const viewsDir = process.env.VIEWS_DIR
+  ? path.resolve(process.env.VIEWS_DIR)
+  : path.join(__dirname, "views");
+app.set("views", viewsDir);
 
-app.use(express.static(process.env.STATIC_DIR || path.join(__dirname, "public")));
+const publicDir = process.env.STATIC_DIR
+  ? path.resolve(process.env.STATIC_DIR)
+  : path.join(__dirname, "public");
+app.use(express.static(publicDir));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodoverride("_method"));
