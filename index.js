@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
-const methodoverride = require("method-override");
+const methodOverride = require("method-override");
 
 app.set("view engine", "ejs");
 const viewsDir = process.env.VIEWS_DIR
@@ -16,7 +16,7 @@ const publicDir = process.env.STATIC_DIR
 app.use(express.static(publicDir));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(methodoverride("_method"));
+app.use(methodOverride("_method"));
 
 let posts = [
     {
